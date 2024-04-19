@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-world-container
+        image: acrtest123154325.azurecr.io/python-docker:latest
+        ports:
+        - containerPort: 5000
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: rabbitmq
+#   template:
+#     metadata:
+#       labels:
+#         app: rabbitmq
+#     spec:
+#       nodeSelector:
+#         "kubernetes.io/os": linux
+#       containers:
+#       - name: rabbitmq
+#         image: mcr.microsoft.com/mirror/docker/library/rabbitmq:3.10-management-alpine
+#         ports:
+#         - containerPort: 5672
+#           name: rabbitmq-amqp
+#         - containerPort: 15672
+#           name: rabbitmq-http
